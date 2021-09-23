@@ -24,10 +24,14 @@ services:
     depends_on:
       - db
     build: ./
+    volumes:
+      - omeka-files:/var/www/html/files
     image: omeka
     ports:
       - "80:80"
     restart: always
 volumes:
   mysql-data:
+    driver: local
+  omeka-files:
     driver: local
