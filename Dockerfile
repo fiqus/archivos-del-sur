@@ -32,7 +32,7 @@ RUN curl -J -L -s -k \
 &&  mv /var/www/omeka-2.7.1 /var/www/html
 
 RUN curl -J -L -s -k \
-    'https://github.com/CPHDH/theme-curatescape/archive/master.zip' \
+    'https://github.com/MJoaaquin/theme-curatescape/archive/refs/heads/master.zip' \
     -o /var/www/theme-curatescape-master.zip \
 &&  unzip -q /var/www/theme-curatescape-master.zip -d /var/www/html/themes/ \
 &&  mv /var/www/html/themes/theme-curatescape-master/curatescape /var/www/html/themes/curatescape \
