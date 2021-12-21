@@ -1,3 +1,6 @@
+current_dir = $(notdir $(shell pwd))
+addres_to_copy_the_lan_config = $(addprefix $(current_dir),_omeka_1:/var/www/html/application/config/config.ini)
+
 list:
 	@docker image ls
 
@@ -14,6 +17,6 @@ stop:
 	@docker-compose stop
 
 copy-config:
-	@docker cp ./config.ini archivos-del-sur_omeka_1:/var/www/html/application/config/config.ini
+	@docker cp ./config.ini $(addres_to_copy_the_lan_config)
 
 reset: down delete-image up copy-config stop up
