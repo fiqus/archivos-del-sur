@@ -23,13 +23,13 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install exif && \
     docker-php-ext-enable exif
 
-RUN curl -J -L -s -k --max-time 60\
-    'https://github.com/omeka/Omeka/releases/download/v2.8/omeka-2.8.zip' \
+RUN curl -J -L -s -k \
+    'https://github.com/omeka/Omeka/releases/download/v3.0.1/omeka-3.0.1.zip' \
     -o /var/www/omeka.zip \
 &&  unzip -q /var/www/omeka.zip -d /var/www/ \
 &&  rm /var/www/omeka.zip \
 &&  rm -rf /var/www/html \
-&&  mv /var/www/omeka-2.8 /var/www/html
+&&  mv /var/www/omeka-3.0.1 /var/www/html
 
 RUN curl -J -L -s -k \
     'https://github.com/CPHDH/theme-curatescape-echo/archive/refs/heads/master.zip' \
