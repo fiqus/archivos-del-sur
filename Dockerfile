@@ -23,20 +23,20 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install exif && \
     docker-php-ext-enable exif
 
-RUN curl -J -L -s -k \
-    'https://github.com/omeka/Omeka/releases/download/v2.7.1/omeka-2.7.1.zip' \
+RUN curl -J -L -s -k --max-time 60\
+    'https://github.com/omeka/Omeka/releases/download/v2.8/omeka-2.8.zip' \
     -o /var/www/omeka.zip \
 &&  unzip -q /var/www/omeka.zip -d /var/www/ \
 &&  rm /var/www/omeka.zip \
 &&  rm -rf /var/www/html \
-&&  mv /var/www/omeka-2.7.1 /var/www/html
+&&  mv /var/www/omeka-2.8 /var/www/html
 
 RUN curl -J -L -s -k \
-    'https://github.com/MJoaaquin/theme-curatescape/archive/refs/heads/master.zip' \
-    -o /var/www/theme-curatescape-master.zip \
-&&  unzip -q /var/www/theme-curatescape-master.zip -d /var/www/html/themes/ \
-&&  mv /var/www/html/themes/theme-curatescape-master/curatescape /var/www/html/themes/curatescape \
-&&  rm /var/www/theme-curatescape-master.zip
+    'https://github.com/CPHDH/theme-curatescape-echo/archive/refs/heads/master.zip' \
+    -o /var/www/theme-curatescape-echo-master.zip \
+&&  unzip -q /var/www/theme-curatescape-echo-master.zip -d /var/www/html/themes/ \
+&&  mv /var/www/html/themes/theme-curatescape-echo-master/curatescape-echo /var/www/html/themes/curatescape \
+&&  rm /var/www/theme-curatescape-echo-master.zip
 
 RUN curl -J -L -s -k \
     'https://github.com/CPHDH/CuratescapeJSON/archive/master.zip' \
@@ -60,10 +60,11 @@ RUN curl -J -L -s -k \
 &&  rm /var/www/plugin-TourBuilder-master.zip
 
 RUN curl -J -L -s -k \
-    'https://github.com/omeka/plugin-Geolocation/releases/download/v3.2/Geolocation-3.2.zip' \
-    -o /var/www/Geolocation-3.2.zip \
-&&  unzip -q /var/www/Geolocation-3.2.zip -d /var/www/html/plugins/ \
-&&  rm /var/www/Geolocation-3.2.zip
+    'https://github.com/omeka/plugin-Geolocation/archive/refs/heads/master.zip' \
+    -o /var/www/plugin-Geolocation-master.zip \
+&&  unzip -q /var/www/plugin-Geolocation-master.zip -d /var/www/html/plugins/ \
+&&  mv /var/www/html/plugins/plugin-Geolocation-master /var/www/html/plugins/Geolocation \
+&&  rm /var/www/plugin-Geolocation-master.zip
 
 RUN curl -J -L -s -k \
     'https://github.com/omeka/plugin-SimplePages/releases/download/v3.1.2/SimplePages-3.1.2.zip' \
