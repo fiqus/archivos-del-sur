@@ -10,4 +10,10 @@ delete-image:
 up:
 	@docker-compose up
 
-reset: down delete-image up
+stop:
+	@docker-compose stop
+
+copy-config:
+	@docker cp ./config.ini archivos-del-sur_omeka_1:/var/www/html/application/config/config.ini
+
+reset: down delete-image up copy-config stop up
