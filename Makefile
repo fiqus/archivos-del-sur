@@ -30,4 +30,4 @@ copy-config:
 build-config: up copy-config 
 
 # Re-build and spanish config
-rebuild-docker-image: down delete-image up copy-config 
+rebuild-docker-image: down delete-image up copy-config stop up
