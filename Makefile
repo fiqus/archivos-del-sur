@@ -30,4 +30,5 @@ copy-config:
 build-config: up copy-config 
 
 # Re-build and spanish config
+# Este es el que no termina de funcar
 rebuild-docker-image: down delete-image up copy-config stop up
