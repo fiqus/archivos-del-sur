@@ -32,11 +32,11 @@ RUN curl -J -L -s -k \
 &&  mv /var/www/omeka-3.0.1 /var/www/html
 
 RUN curl -J -L -s -k \
-    'https://github.com/fiqus/theme-curatescape-echo/archive/refs/heads/new-curate-scape-echo.zip' \
-    -o /var/www/theme-curatescape-echo-new-curate-scape-echo.zip \
-&&  unzip -q /var/www/theme-curatescape-echo-new-curate-scape-echo.zip -d /var/www/html/themes/ \
-&&  mv /var/www/html/themes/theme-curatescape-echo-new-curate-scape-echo/curatescape-echo /var/www/html/themes/curatescape \
-&&  rm /var/www/theme-curatescape-echo-new-curate-scape-echo.zip
+    'https://github.com/CPHDH/theme-curatescape-echo/archive/refs/heads/master.zip' \
+    -o /var/www/master.zip \
+&&  unzip -q /var/www/master.zip -d /var/www/html/themes/ \
+&&  mv /var/www/html/themes/theme-curatescape-echo-master/curatescape-echo /var/www/html/themes/curatescape \
+&&  rm /var/www/master.zip
 
 RUN curl -J -L -s -k \
     'https://github.com/CPHDH/CuratescapeJSON/archive/master.zip' \
