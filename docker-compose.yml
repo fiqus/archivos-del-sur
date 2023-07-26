@@ -36,6 +36,8 @@ services:
       - "traefik.http.routers.omeka.rule=Host(`archivosdelsur.fiqus.coop`)"
       - "traefik.http.routers.omeka.entrypoints=websecure"
       - "traefik.http.routers.omeka.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.omeka.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.omeka.redirectscheme.permanent=true"
 
   traefik:
     image: "traefik:v2.10"
