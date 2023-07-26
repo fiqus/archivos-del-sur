@@ -28,31 +28,32 @@ services:
     volumes:
       - omeka-files:/var/www/html/files
     image: omeka
-    ports:
-      - "80:80"
     restart: always
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.omeka.rule=Host(`archivosdelsur.fiqus.coop`)"
       - "traefik.http.routers.omeka.entrypoints=websecure"
       - "traefik.http.routers.omeka.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.omeka.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.omeka.redirectscheme.permanent=true"
+      - "traefik.http.routers.omeka-redirect.entrypoints=web"
+      - "traefik.http.routers.omeka-redirect.rule=Host(`archivosdelsur.fiqus.coop`)"
+      - "traefik.http.routers.omeka-redirect.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
 
   traefik:
     image: "traefik:v2.10"
     container_name: "traefik"
     command:
-      #- "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.myresolver.acme.email=joaquinmansilla+1@fiqus.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
+      - "80:80"
       - "443:443"
       - "8082:8080"
     volumes:
