@@ -31,11 +31,11 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.omeka.rule=Host(`archivosdelsur.fiqus.coop`)"
+      - "traefik.http.routers.omeka.rule=Host(`archivosdelsur.ar`)"
       - "traefik.http.routers.omeka.entrypoints=websecure"
       - "traefik.http.routers.omeka.tls.certresolver=myresolver"
       - "traefik.http.routers.omeka-redirect.entrypoints=web"
-      - "traefik.http.routers.omeka-redirect.rule=Host(`archivosdelsur.fiqus.coop`)"
+      - "traefik.http.routers.omeka-redirect.rule=Host(`archivosdelsur.ar`)"
       - "traefik.http.routers.omeka-redirect.middlewares=redirect-to-https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
