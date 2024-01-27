@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 
 services:
   db:
@@ -16,7 +16,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     links:
-     - db:db
+      - db:db
     ports:
       - "8080:80"
 
@@ -50,7 +50,7 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=joaquinmansilla+1@fiqus.com"
+      - "--certificatesresolvers.myresolver.acme.email=infra@lawal.coop"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
